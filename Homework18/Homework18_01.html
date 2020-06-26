@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homework18_01</title>
+</head>
+<body>
+    <script>
+        //1)
+        function currentDate(separator) {
+            var day = new Date();
+            var date = day.getDate();
+            var month = day.getMonth()+1;
+            var year = day.getFullYear();
+
+            if(separator) {
+                return date + separator + month + separator + year;
+            } else {
+                return date + "/"  + month + "/" + year;
+            }
+        }
+            console.log(currentDate());
+            console.log(currentDate('|'));
+            console.log(currentDate('-'));
+
+            //2)
+            function getDaysInMonth(month, year) {
+                return new Date(year, month, 0).getDate();
+        }
+        console.log(getDaysInMonth(4, 2020));
+
+            //3)
+            function month_name(date) {
+                var month = date.getMonth();
+                var monthNames = ['January', 'February', 'March', 'April', 'May', 'june', 'July', 'August', 'September', 'October', 'November', 'December'];
+                return monthNames[month];
+            }
+            console.log(month_name(new Date('10/11/2020')));
+            
+            //4)
+            function itsWeekend(date) {
+                var day = new Date(date);
+                var weekendDay = day.getDay();
+                if ((weekendDay === 0) || (weekendDay === 6)){
+                    var weekend = 'Its Weekend';
+                }
+                return weekend;
+            }
+            console.log(itsWeekend('Apr 26, 2020'));
+            //5)
+            function date_diff_indays(date1, date2) {
+                var dateOne = new Date(date1);
+                var dateTwo = new Date(date2);
+                return difference_indays = Math.floor((dateTwo - dateOne) / 24 / 60 / 60 / 1000);
+            }
+            console.log(date_diff_indays('04/02/2014', '11/04/2014'));
+            
+            //6)
+            function lastDay(year, month) {
+                return new Date(month+1, year, 0).getDate();
+            }
+            console.log(lastDay(2014,11));
+
+            //7)
+            var dates = ['1/1/2020', '10/04/2020', '7/5/2019', '1/6/2020', '31/8/2020', '9/9/2020', '12/12/2021', '15/10/2019'];
+            function maxDate(datesArr) {
+            var highest = new Date(dates[0]);
+            for(var i = 0; i < dates.length; i++) {
+                var newDate = new Date(dates[i]);
+                if(newDate.getFullYear() > highest.getFullYear()) {
+                    if(newDate.getMonth() > highest.getMonth()) {
+                        if(newDate.getDate() > highest.getDate()) {
+                            highest = newDate
+                        }
+                    }
+                }
+            }
+            return (highest.getDate()) + '/' + (highest.getMonth() + 1) + '/' + (highest.getFullYear());
+        }
+        console.log(maxDate(dates));
+
+
+        var some_array = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+
+        function myMap(myArray, callback) {
+            changedArray = [];
+            for(var i = 0; i < myArray.length; i++) {
+                if (typeof callback === 'function') {
+                    callback(myArray[i]);
+                }
+            }
+            return changedArray;
+        }
+        console.log(myMap(some_array, function(increment) {
+            changedArray.push(increment +1);
+        }));
+        console.log(myMap(some_array, function(double) {
+            changedArray.push(double * 2);
+        }));
+        console.log(myMap(some_array, function(square) {
+            changedArray.push(square * square);
+        }));
+    </script>
+</body>
+</html>
